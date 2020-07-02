@@ -1,0 +1,34 @@
+<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+        <div class="card card-body">
+          <h2 class="text-center mb-3">Search Books</h2>
+            <form action="/books" method="GET">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input 
+                        type="text" 
+                        name="title"
+                        class="form-control"
+                        value="<%= searchOptions.name %>"
+                    />
+                </div>
+                <div class="form-row">
+                    <div class="form-item">
+                        <label>Published After</label>
+                        <input type="date" name="publishedAfter" value="<%=searchOptions.publishedAfter%> ">
+                    </div>
+                    <div class="form-item">
+                        <label>Published Before</label>
+                        <input type="date" name="publishedBefore" value="<%=searchOptions.publishedBefore%> ">
+                    </div>    
+                </div>
+                <Button type="submit" class="btn btn-primary">Search</Button>
+            </form>
+        </div>
+        <div>
+            <% books.forEach(book => { %> 
+                <img height="150" width="100" src="<%= book.coverImagePath %>">
+            <% }) %>
+        </div>
+    </div>
+</div>
