@@ -2,12 +2,14 @@ if(process.env.NODE_ENV !== 'production'){
     require('dotenv').config()
 }
 
+//Libaries
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
+const methodOverride = require('method-override');
 
 const app = express();
 
@@ -28,10 +30,15 @@ db.once('open', () => console.log('Taste the Mongo...'));
 //EJS
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
+
+//Declaring Static Folder
 app.use(express.static('public'));
 
+//Method Override
+app.use(methodOverride('_method'));
+
 // BodyParser
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ limit: '10mb', extended: false }));
 
 //Express Session Middleware
 app.use(session({
